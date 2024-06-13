@@ -8,17 +8,30 @@
   </head>
   <body>
     <style>
+      @font-face {
+        font-family:monogram;
+        src: url(monogram.ttf);
+      }
+
+
       #app {
         width: 100%;
         height: 100%;
         overflow: hidden;
       }
+
+
     </style>
     <div id="app">
       <div id="ui">
         <p class="note">Tap/click around to move</p>
         <div id="textbox-container" style="display: none">
-
+          <div class="textbox">
+            <p> id="dialogue" class="ui-text"</p>
+            <div class="btn-container">
+              <button id="close" class="ui-close-btn">Close</button>
+            </div>
+          </div>
         </div>
       </div> 
       <canvas if="game"></canvas>
