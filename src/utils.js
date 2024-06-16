@@ -4,6 +4,7 @@ export function displayDialogue(Text, onDisplayEnd) {
 
     dialogueUI.style.display = "block";
 
+    //Dialogue Scroll
     let index = 0;
     let currentText = "";
     const intervalRef = setInterval(() => {
@@ -16,4 +17,17 @@ export function displayDialogue(Text, onDisplayEnd) {
 
         clearInterval(intervalRef);
     }, 5);
+
+    //Close Button logic
+    const closeBtn = document.getElementById("close");
+
+    function onCloseBtnClick() {
+        onDisplayEnd();
+        dialogueUI.style.display = "none";
+        dialogue.innerHTM = "";
+        clearInterval(intervalRef);
+        closeBtn.removeEventListener("click", onCloseBtnClick);
+    }
+
+    closeBtn.addEventListener("click", onCloseBtnClick);
 }
