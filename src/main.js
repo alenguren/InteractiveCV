@@ -62,9 +62,21 @@ k.scene("main", async () => {
                 if (boundary.name) {
                     player.onCollide(boundary.name, () => {
                         player.isInDialogue = true;
-                        //TODO
-                    })
+                        displayDialogue("TODO", () => (player.isInDialogue = false));
+                    });
                 }
+            }
+            continue;
+        }
+
+        if (layet.name === "spawnpoints") {
+            for (const entity of layer.objects) {
+                if (entity.name === "player") {
+                    player.pos = k.vec2(
+                        (map.pos.x + entity.x) * scaleFactor,
+                        (map.pos.y + entity.y) * scaleFactor
+                    );
+                }  
             }
         }
     }
