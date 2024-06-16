@@ -24,7 +24,7 @@ k.scene("main", async () => {
     // ...
     const layers = mapData.layers;
 
-    const map = k.make([
+    const map = k.add([
         k.sprite("map"),
         k.pos(0),
         k.scale(scaleFactor)
@@ -52,7 +52,7 @@ k.scene("main", async () => {
             for (const boundary of layer.objects) {
                 map.add([
                     k.area({
-                        shape: new k.rect(k.vec2(0), boundary.width, boundary.height),
+                        shape: new k.Rect(k.vec2(0), boundary.width, boundary.height),
                     }),
                     k.body({ isStatic: true }),
                     k.pos(boundary.x, boundary.y),
