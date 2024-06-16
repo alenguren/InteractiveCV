@@ -69,7 +69,7 @@ k.scene("main", async () => {
             continue;
         }
 
-        if (layet.name === "spawnpoints") {
+        if (layer.name === "spawnpoints") {
             for (const entity of layer.objects) {
                 if (entity.name === "player") {
                     player.pos = k.vec2(
@@ -82,6 +82,10 @@ k.scene("main", async () => {
             }
         }
     }
+
+    k.onUpdate(() => {
+        k.camPos(player.pos.x, player.pos.y + 100);
+    })
 });
 
 k.go("main");
