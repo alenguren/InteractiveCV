@@ -1,4 +1,4 @@
-import { scaleFactor } from "./constant";
+import { dialogueData, scaleFactor } from "./constant";
 import { k } from "./kaboomCtx";
 import { displayDialogue, setCamScale } from "./utils"; 
 
@@ -10,7 +10,7 @@ k.loadSprite("spritesheet", "./spritesheet.png", {
         "idle-down": 936, 
         "walk-down": {from: 936, to: 939, loop: true, speed: 8},
         "idle-side": 975, 
-        "walk-side": {from: 936, to: 978, loop: true, speed: 8},
+        "walk-side": {from: 975, to: 978, loop: true, speed: 8},
         "idle-up": 1014, 
         "walk-up": {from: 1014, to: 1017, loop: true, speed: 8},
     },
@@ -63,7 +63,7 @@ k.scene("main", async () => {
                 if (boundary.name) {
                     player.onCollide(boundary.name, () => {
                         player.isInDialogue = true;
-                        displayDialogue("TODO", () => (player.isInDialogue = false));
+                        displayDialogue(dialogueData[boundary.name], () => (player.isInDialogue = false));
                     });
                 }
             }
@@ -140,6 +140,19 @@ k.scene("main", async () => {
             player.direction = "left";
             return;
         }
+    });
+
+    k.onMouseRelease(() => {
+        if (player.direction === "down") {
+            player.play("idle.down");
+            return;
+        }
+        if (player.direction === "up") {
+            player.play("idle-up");
+            return;
+        }
+        
+        player.play("idle-side");
     });
 });
 
